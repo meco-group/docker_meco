@@ -1,0 +1,6 @@
+image: ubuntu:14.04
+
+build:
+  stage: build
+  script: 
+    - docker build -t $CI_PROJECT_NAME .
