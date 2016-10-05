@@ -9,6 +9,6 @@ build:
     - echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" >> /etc/apt/sources.list.d/docker.list
     - sudo apt-get update
     - sudo apt-get install --yes --force-yes docker-engine
-
+    - docker daemon &
   script: 
     - docker build -t $CI_PROJECT_NAME .
