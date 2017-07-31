@@ -26,3 +26,5 @@ RUN cd rclone-*-linux-amd64 && sudo cp rclone /usr/sbin/ && sudo chown root:root
 #COPY .rclone.conf /root
 
 RUN apt-get install gcovr
+
+RUN echo 'alias rclone_setup="envsubst < .rclone.conf.template > /root/.rclone.conf"' >> ~/.bashrc

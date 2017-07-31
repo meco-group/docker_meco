@@ -1,0 +1,6 @@
+[dropbox]
+type = dropbox
+app_key =
+app_secret =
+token = $DROPBOX_TOKEN
+
