@@ -1,6 +1,6 @@
-FROM ubuntu:vivid
+FROM ubuntu:xenial
 RUN apt-get -y update
-RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev ipython python-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 python-numpy python-matplotlib moreutils tree wget software-properties-common
+RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev ipython python-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 python-numpy python-matplotlib python3-dev python3-numpy python3-matplotlib moreutils tree wget software-properties-common
 
 RUN dpkg --add-architecture i386
 RUN apt-get update -qq
@@ -16,26 +16,13 @@ ENV NUMPYVERSION 1.9.1
 RUN wget -O numpy.exe https://github.com/casadi/testbot/releases/download/perpetual/numpy-$NUMPYVERSION-sse2.exe
 RUN /opt/wine-staging/bin/wine C:/Python27/Scripts/easy_install.exe numpy.exe && rm numpy.exe
 
-#RUN apt-get update -qq
-#RUN echo "deb-src http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse" | sudo tee --append  /etc/apt/sources.list
-#RUN echo "deb http://archive.ubuntu.com/ubuntu vivid main restricted universe multiverse" | sudo tee --append  /etc/apt/sources.list
-
-#RUN echo "Package: *" | sudo tee --append /etc/apt/preferences.d/mytest
-#RUN echo "Pin: release n=trusty" | sudo tee --append /etc/apt/preferences.d/mytest
-#RUN echo "Pin-priority: 700" | sudo tee --append /etc/apt/preferences.d/mytest
-
-#RUN echo "Package: *" | sudo tee --append /etc/apt/preferences.d/mytest  
-#RUN echo "Pin: release n=vivid" | sudo tee --append /etc/apt/preferences.d/mytest  
-#RUN echo "Pin-priority: 600" | sudo tee --append /etc/apt/preferences.d/mytest  
-
-#RUN apt-get update -qq
-RUN apt-get install -q -y -t vivid mingw-w64 
-RUN apt-get install -q -y -t vivid mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
+RUN apt-get install -q -y mingw-w64 
+RUN apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
 RUN apt-get install -q -y valgrind zip
 
 RUN wget http://downloads.rclone.org/rclone-current-linux-amd64.zip
 RUN unzip rclone-current-linux-amd64.zip
 RUN cd rclone-*-linux-amd64 && sudo cp rclone /usr/sbin/ && sudo chown root:root /usr/sbin/rclone && sudo chmod 755 /usr/sbin/rclone
-COPY .rclone.conf /root
+#COPY .rclone.conf /root
 
 RUN apt-get install gcovr
