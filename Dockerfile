@@ -23,8 +23,8 @@ RUN apt-get install -q -y valgrind zip
 RUN wget http://downloads.rclone.org/rclone-current-linux-amd64.zip
 RUN unzip rclone-current-linux-amd64.zip
 RUN cd rclone-*-linux-amd64 && sudo cp rclone /usr/sbin/ && sudo chown root:root /usr/sbin/rclone && sudo chmod 755 /usr/sbin/rclone
-#COPY .rclone.conf /root
+COPY .rclone.conf.template /root
 
 RUN apt-get install gcovr
 
-RUN echo 'alias rclone_setup="envsubst < .rclone.conf.template > /root/.rclone.conf"' >> ~/.bashrc
+RUN echo 'alias rclone_setup="envsubst < /root/.rclone.conf.template > /root/.rclone.conf"' > /opt/meco_setup
