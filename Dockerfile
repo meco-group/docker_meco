@@ -25,6 +25,6 @@ RUN unzip rclone-current-linux-amd64.zip
 RUN cd rclone-*-linux-amd64 && sudo cp rclone /usr/sbin/ && sudo chown root:root /usr/sbin/rclone && sudo chmod 755 /usr/sbin/rclone
 COPY .rclone.conf.template /root
 
-RUN apt-get install gcovr gettext-base -y
+RUN apt-get install gcovr gettext-base elfutils -y
 
 RUN echo 'rclone_setup() { envsubst < /root/.rclone.conf.template > /root/.rclone.conf; } ; export -f rclone_setup' > /opt/meco_setup
