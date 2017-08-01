@@ -27,4 +27,4 @@ COPY .rclone.conf.template /root
 
 RUN apt-get install gcovr
 
-RUN echo 'alias rclone_setup="envsubst < /root/.rclone.conf.template > /root/.rclone.conf"' > /opt/meco_setup
+RUN echo 'rclone_setup() { envsubst < /root/.rclone.conf.template > /root/.rclone.conf; } ; export -f rclone_setup' > /opt/meco_setup
