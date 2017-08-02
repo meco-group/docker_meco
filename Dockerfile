@@ -1,6 +1,6 @@
 FROM ubuntu:vivid
 RUN apt-get -y update
-RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev ipython python-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 python-numpy python-matplotlib moreutils tree wget software-properties-common
+RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 moreutils tree wget software-properties-common
 
 RUN dpkg --add-architecture i386
 RUN apt-get update -qq
@@ -34,5 +34,5 @@ RUN chmod +x miniconda.sh
 ENV PATH="/root/miniconda2/bin:${PATH}"
 RUN ./miniconda.sh -b
 RUN conda update --yes conda
-RUN conda create --yes -n condaenv python=3.6 numpy=1.11 scipy matplotlib
-RUN conda install --yes -n condaenv pip
+RUN conda create --yes -n condapy3.6 python=3.6 numpy=1.11 scipy matplotlib pip
+RUN conda create --yes -n condapy2.7 python=2.7 numpy=1.9 scipy matplotlib pip
