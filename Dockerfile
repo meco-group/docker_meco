@@ -1,6 +1,6 @@
-FROM ubuntu:xenial
+FROM ubuntu:vivid
 RUN apt-get -y update
-RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev ipython python-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 python-numpy python-matplotlib python3-dev python3-numpy python3-matplotlib moreutils tree wget software-properties-common
+RUN apt-get install -y fortunes binutils gcc-4.7 g++-4.7 gfortran-4.7 git cmake cmake-data liblapack-dev ipython python-dev libxml2-dev libx11-6 libxext6 libxt6 libxmu6 python-numpy python-matplotlib moreutils tree wget software-properties-common
 
 RUN dpkg --add-architecture i386
 RUN apt-get update -qq
@@ -28,3 +28,11 @@ COPY .rclone.conf.template /root
 RUN apt-get install gcovr gettext-base elfutils -y
 
 RUN echo 'rclone_setup() { envsubst < /root/.rclone.conf.template > /root/.rclone.conf; } ; export -f rclone_setup' > /opt/meco_setup
+
+RUN wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+RUN chmod +x miniconda.sh
+ENV PATH="$HOME/miniconda2/bin:${PATH}"
+RUN ./miniconda.sh -b
+RUN conda update --yes conda
+RUN conda create --yes -n condaenv python=3.6 numpy=1.11 scipy matplotlib
+RUN conda install --yes -n condaenv pip
