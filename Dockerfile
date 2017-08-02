@@ -31,7 +31,7 @@ RUN echo 'rclone_setup() { envsubst < /root/.rclone.conf.template > /root/.rclon
 
 RUN wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
 RUN chmod +x miniconda.sh
-ENV PATH="$HOME/miniconda2/bin:${PATH}"
+ENV PATH="/root/miniconda2/bin:${PATH}"
 RUN ./miniconda.sh -b
 RUN conda update --yes conda
 RUN conda create --yes -n condaenv python=3.6 numpy=1.11 scipy matplotlib
