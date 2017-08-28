@@ -36,3 +36,5 @@ RUN ./miniconda.sh -b
 RUN conda update --yes conda
 RUN conda create --yes -n condapy3.6 python=3.6 numpy=1.11 scipy matplotlib pip
 RUN conda create --yes -n condapy2.7 python=2.7 numpy=1.9 scipy matplotlib pip
+
+RUN apt-get install -y docker.io
