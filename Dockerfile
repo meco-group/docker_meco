@@ -39,7 +39,7 @@ RUN conda create --yes -n condapy2.7 python=2.7 numpy=1.9 scipy matplotlib pip
 
 RUN apt-get install -y docker.io
 
-RUN apt-get install -y doxygen graphviz
+RUN apt-get install -y doxygen graphviz ragel
 RUN git clone https://github.com/meco-group/mtocpp
 RUN cd mtocpp && mkdir build && cd build && cmake .. && make && cd ../..
 
