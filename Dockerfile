@@ -41,5 +41,5 @@ RUN apt-get install -y docker.io
 
 RUN apt-get install -y doxygen graphviz
 RUN git clone https://github.com/meco-group/mtocpp
-RUN mkdir build && cd build && cmake .. && make && make install && cd ..
+RUN cd mtocpp && mkdir build && cd build && cmake .. && make && cd ../..
 
