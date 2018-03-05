@@ -28,3 +28,18 @@ COPY .rclone.conf.template /root
 RUN apt-get install gcovr gettext-base elfutils -y
 
 RUN echo 'rclone_setup() { envsubst < /root/.rclone.conf.template > /root/.rclone.conf; } ; export -f rclone_setup' > /opt/meco_setup
+
+RUN wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh
+RUN chmod +x miniconda.sh
+ENV PATH="/root/miniconda2/bin:${PATH}"
+RUN ./miniconda.sh -b
+RUN conda update --yes conda
+RUN conda create --yes -n condapy3.6 python=3.6 numpy=1.11 scipy matplotlib pip
+RUN conda create --yes -n condapy2.7 python=2.7 numpy=1.9 scipy matplotlib pip
+
+RUN apt-get install -y docker.io
+
+RUN apt-get install -y doxygen graphviz
+RUN git clone https://github.com/meco-group/mtocpp
+RUN mkdir build && cd build && cmake .. && make && make install && cd ..
+
