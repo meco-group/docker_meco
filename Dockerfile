@@ -8,13 +8,9 @@ RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 -y
 RUN apt-get install sudo -y
 
 RUN wget https://raw.githubusercontent.com/casadi/python-lib-template/master/.travis-setup.sh && chmod +x .travis-setup.sh
-ENV WINEENV py27
+ENV WINEENV py36_64
 
 RUN "./.travis-setup.sh"
-ENV NUMPYVERSION 1.9.1
-
-RUN wget -O numpy.exe https://github.com/casadi/testbot/releases/download/perpetual/numpy-$NUMPYVERSION-sse2.exe
-RUN /opt/wine-staging/bin/wine C:/Python27/Scripts/easy_install.exe numpy.exe && rm numpy.exe
 
 RUN apt-get install -q -y mingw-w64 
 RUN apt-get install -q -y mingw-w64 g++-mingw-w64 gcc-mingw-w64 gfortran-mingw-w64 mingw-w64-tools
