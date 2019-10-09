@@ -1,4 +1,4 @@
-FROM mcr.microsoft.com/windows/servercore:1803
+FROM mcr.microsoft.com/windows/servercore:1803-amd64
 LABEL Description="Windows Server Core development environment with Qt 5.12.2, Chocolatey and dependencies"
 
 # Disable crash dialog for release-mode runtimes
