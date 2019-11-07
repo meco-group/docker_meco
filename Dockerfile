@@ -33,6 +33,7 @@ RUN tlmgr install \
   babel-english \
   latex-fonts \
   collection-fontsrecommended \
+  collection-fontsextra \
   lm
 
 # graphical
