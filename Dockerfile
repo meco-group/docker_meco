@@ -9,6 +9,6 @@ RUN apk add --no-cache wget perl xz && \
     install-tl-20*/install-tl --profile=/tmp/texlive-profile.txt && \
     rm -rf install-tl-*
 
-ENV PATH=/usr/local/texlive/bin/x86_64-linuxmusl:$PATH
+ENV PATH=/usr/local/texlive/bin/x86_64-linux:$PATH
 
 RUN tlmgr update --self
