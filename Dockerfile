@@ -8,7 +8,7 @@ RUN apt-get install libc6:i386 libncurses5:i386 libstdc++6:i386 -y
 RUN apt-get install sudo -y
 
 RUN wget https://raw.githubusercontent.com/casadi/python-lib-template/master/.travis-setup.sh && chmod +x .travis-setup.sh
-ENV WINEENV py36_64
+ENV WINEENV py37_64
 
 RUN "./.travis-setup.sh"
 
@@ -30,7 +30,7 @@ RUN chmod +x miniconda.sh
 ENV PATH="/root/miniconda2/bin:${PATH}"
 RUN ./miniconda.sh -b
 RUN conda update --yes conda
-RUN conda create --yes -n condapy3.6 python=3.6 numpy=1.11 scipy matplotlib pip
+RUN conda create --yes -n condapy3.7 python=3.7 scipy matplotlib pip
 RUN conda create --yes -n condapy2.7 python=2.7 numpy=1.9 scipy matplotlib pip
 
 RUN apt-get install -y docker.io
